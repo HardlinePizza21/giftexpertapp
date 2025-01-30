@@ -4,14 +4,17 @@ import { GifGrid } from "./components/GifGrid";
 
 export const GifExpertApp = () => {
 
-    const [cateogries, setCateogries] = useState(['One Punch']);
+
+    
+    const [cateogories, setCateogries] = useState(['One Punch']);
 
     const onAddCategory = (NewCategory) =>  {
 
-        if( cateogries.includes(NewCategory) ) return;
+
+        if(cateogories.includes(NewCategory)) return;
 
         setCateogries((categories) => {
-            return [...categories, NewCategory];
+            return [NewCategory, ...categories];
         });
     }
 
@@ -30,17 +33,18 @@ export const GifExpertApp = () => {
 
                 //Emite la categoria para ser agregada con la funcion onAddCategory 
                 //On Siginifica que se esta emitiendo algo
-                onNewCategory={NewCategory => onAddCategory(NewCategory)}
+                onNewCategory={(NewCategory) => onAddCategory(NewCategory)}
+
             />
 
-            {/* Listado de Gif */}
+            {/* Lista+do de Gif */}
 
             {
-                cateogries.map(category => (
-                        <GifGrid 
-                            key={category} 
-                            category={category}
-                        />
+                cateogories.map(category => (
+                    <GifGrid 
+                        key={category} 
+                        category={category}
+                    />
                 ))
             }
 
